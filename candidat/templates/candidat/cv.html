@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Formulaire de candidature </title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'candidat/assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i " rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'candidat/assets/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" >
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="profil">
+        <div class="sidebar-brand-icon rotate-n-15">
+         
+        </div>
+        <div class="sidebar-brand-text mx-3"> <img src="{% static 'administrateur/assets/img/logo.jpg'%}" class="img-circle" width="210" height="67"><sup></sup></div>
+      </a>
+
+      
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
+
+     <!-- Nav Item - Dashboard -->
+     <li class="nav-item active">
+       <a class="nav-link" href="dashboard">
+         <i class="fas fa-fw fa-tachometer-alt"></i>
+         <span>Profile</span></a>
+     </li>
+     <li class="nav-item active">
+       <a class="nav-link" href="offre">
+         <i class="fas fa-fw fa-tachometer-alt"></i>
+         <span>Offres de recrutement</span></a>
+     </li>
+     <li class="nav-item active">
+       <a class="nav-link" href="cv.html">
+         <i class="fas fa-fw fa-tachometer-alt"></i>
+         <span>Formulaire de candidature</span></a>
+     </li>
+     <!-- Divider -->
+     <hr class="sidebar-divider d-none d-md-block">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+         
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                  <i class="fas fa-user"></i>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="dashboard">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="offre">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Offres
+                </a>
+                <a class="dropdown-item" href="cv.html">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Formulaire de candidature
+                </a>
+               
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Déconnexion
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800"><center>Formulaire de candidature</center></h1>
+
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+  <form onclick="return validation();" action="edit/{{user.id}}" method="Post" action="" enctype="multipart/form-data" >
+          {% csrf_token %}
+
+        <div class="containera">
+          <center>
+                <div class="container">
+        
+          <i class="fa fa-user-o" aria-hidden="true" ></i>
+      
+        </div>
+        <font style="color: royalblue;"><b>{{user.last_name}} {{user.first_name}}</b></font>
+        <br>
+        <h3>Vos informations Personnelles</h3>
+        <br>
+        <input class="w3-input w3-border" id="cin" name="cin" type="text" placeholder="CIN" value="{{form.cin}}" style="width: 60%;" required><br>
+        <input class="w3-input w3-border" id="Nom" name="name" type="text" value="{{user.last_name}}" style="width: 60%;" required><br>
+        <input class="w3-input w3-border" id="Prenom" name="prenom" type="text" value="{{user.first_name}}" style="width: 60%;" required><br>
+        Date de naissance <input class="w3-input w3-border" id="date"  name="date" type="date" placeholder="Date de Naissance" style="width: 60%;" required><br>
+        <input class="w3-input w3-border" id="Adresse" name="adress" type="text" placeholder="Adresse" value="{{form.adresse}}" style="width: 60%;" required><br>
+        <input class="w3-input w3-border" id="num" name="numero" type="number" placeholder="N°Tel:" value="{{form.phone}}" style="width: 60%;" required><br>
+        <input class="w3-input w3-border" id="email" name="email" type="email" value="{{user.email}}" style="width: 60%;" required><br>
+        <div class="w3-row-padding">
+          <div class="w3-third">
+              <input class="w3-input w3-border" name="encadrant1" type="email" placeholder="Email d'encadrant 1" value="{{form.encadrant1}}">
+          </div>
+          <div class="w3-third">
+              <input class="w3-input w3-border" name="encadrant2" type="email" placeholder="Email d'encadrant 2" value="{{form.encadrant2}}">
+          </div>
+          <div class="w3-third">
+              <input class="w3-input w3-border"  name="encadrant3" type="email" placeholder="Email d'encadrant 3" value="{{form.encadrant3}}">
+          </div>
+      </div>
+      <br>
+        <h3>Vos documents (format PDF)</h3><br>
+        <a href="{{ MEDIA_URL }}{{ dip.attestation_bac }}" target="_blank"><font color=royalblue><strong>Attestation de Baccalauréat</strong></font></a> <br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="bac" style="width: 60%;" required><br>
+        <a href="{{ MEDIA_URL }}{{ dip.attestation_licence }}" target="_blank"><font color=royalblue><strong>Attestation de Licence</strong></font></a> <br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="licence" style="width: 60%;" required><br>
+        <a href="{{ MEDIA_URL }}{{ dip.attestation_master }}" target="_blank"><font color=royalblue><strong>Attestation de Master</strong></font></a><br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="master" style="width: 60%;" required><br>
+        <a href="{{ MEDIA_URL }}{{ dip.these_doc }}" target="_blank"><font color=royalblue><strong>Thèse de Doctorat</strong></font></a><br>
+        <input type="file" value="{{ dip.these_doc }}" accept="application/pdf" class="w3-input w3-border" id="pdf" name="these" style="width: 60%;" required><br>
+        <a href="{{ MEDIA_URL }}{{ dip.article_doc }}" target="_blank"><font color=royalblue><strong>Article de Doctorat</strong></font></a><br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="article" style="width: 60%;" required><br>
+        <a href="{{ MEDIA_URL }}{{ dip.attestation_doc }}" target="_blank"><font color=royalblue><strong>Attestation de Doctorat </strong></font></a><br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="doctorat" style="width: 60%;" required><br> 
+        <a href="{{ MEDIA_URL }}{{ dip.cv }}" target="_blank"><font color=royalblue><strong>Curriculum Vitae</strong></font></a><br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="cv" style="width: 60%;" required><br>  
+        <a href="{{ MEDIA_URL }}{{ dip.lettre_motivation }}" target="_blank"><font color=royalblue><strong>Lettre de motivation</strong></font></a><br>
+        <input type="file" accept="application/pdf" class="w3-input w3-border" id="pdf" name="lettre_motivation" style="width: 60%;" required><br>         
+        <button  type=submit style="margin-left:50px;" class="btn btn-success"><i class="fa fa-save" style="font-size:24px"></i> Enregistrer</button> 
+        <button type="reset" style="margin-right:50px;width:130px" class="btn btn-danger"><i class="fa fa-close" style="font-size:24px"></i> Vider</button>
+      </center>
+    </div>
+  </form>
+ 
+        
+      <!-- Footer -->
+      <footer class="sticky-footer" style="background-color: #2e59d9;height:5px;margin-top: 25px; color:white;padding-top: 18px;padding-bottom: 20px;">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; UH2C RECRUTEMENT</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Se déconnecter?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+          <a class="btn btn-primary" href="logout">Déconnexion</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'candidat/assets/vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'candidat/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'candidat/assets/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'candidat/assets/js/sb-admin-2.min.js'%}"></script>
+
+</body>
+
+</html>

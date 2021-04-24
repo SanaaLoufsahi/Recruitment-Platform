@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Espace Candidat</title>
+
+    <!--external css-->
+    <link href="{% static 'administrateur/assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'administrateur/assets/lineicons/style.css' %}">  
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'administrateur/assets/css/style.css' %}" rel="stylesheet" >
+    <link href="{% static 'administrateur/assets/css/style-responsive.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'administrateur/assets/css/to-do.css' %}">
+
+    <script src="{% static 'administrateur/assets/js/chart-master/Chart.js' %}"></script>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'candidat/assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'candidat/assets/css/sb-admin-2.min.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<!-- <style>
+  .bigone{
+    position: relative;
+    background-color: red;
+    width: 75%;
+    height: 150px;
+    margin-top: 50px;
+  }
+  .titre{
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 25%;
+  }
+  .time{
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 25%;
+  }
+  .description{
+    position: absolute;
+    background-color: yellow;
+    width: 100%;
+    height: 25%;
+  }
+  .divid{
+    color: black;
+    height: 100%;
+    height: 1px;
+  }
+</style>-->
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+        <div class="sidebar-brand-text mx-3"> <img src="{% static 'administrateur/assets/img/logo.jpg'%}" width="223" height="70"><sup></sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Profile</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="offre">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Offres de recrutement</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="cv.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Formulaire de candidature</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+			  {% if user.is_authenticated %}
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+				  {% endif %}
+          <i class="fas fa-user"></i>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="offre">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Offres
+                </a>
+                <a class="dropdown-item" href="cv.html">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Formulaire de candidature
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Déconnexion
+                </a>
+              </div> 
+            </li>
+          </ul>
+
+        </nav>
+          
+        <!-- End of Topbar -->
+        <div class="col-lg-9 main-chart">          
+          <div class="row mt mb">
+          <div class="col-md-12" style="margin-left:32%;">
+            {% for message in messages %}
+                    <h4><font color=royalblue>{{message}}</font></h4>
+                   {% endfor %}
+          <section class="task-panel tasks-widget" style="padding-bottom: 10px;">
+                 <div class="panel-heading">
+                       <div class="pull-left"><h5><i class="fa fa-tasks"></i> Informations personnelles</h5></div>
+                         <div class="pull-right hidden-phone">   
+                             <a href="#" data-toggle="modal" data-target="#myModal1">
+                               <button class="btn btn-primary btn-xs "><i class="fa fa-pencil"></i></button>  
+                             </a>
+                           </div>
+                           <br><br>
+                  </div>
+                       <div class="panel-body" style="margin-left: 20px;">
+                         {% if user.is_authenticated %}
+                           <div class="task-content">
+                               <ul id="sortable" class="task-list">
+                                   <li class="list-primary" style="background-color: #d8d6c9;margin-bottom: 4px;border-radius: 10px;">
+                                     <div class="task-title" >
+                                         <span class="task-title-sp"><font size=3px><strong>Nom </strong></font></span>
+                                         <span class="badge bg-important" style="background: #428bca;margin-left:107px;"><font size=4px color=white>{{user.last_name}}</font></span>
+                                     </div>
+                                   </li>
+                                   <li class="list-primary" style="background-color: #d8d6c9;margin-bottom: 4px;border-radius: 10px;">
+                                     <div class="task-title" >
+                                         <span class="task-title-sp" ><font size=3px><strong>Prénom </strong></font></span>
+                                         <span class="badge bg-important" style="background: #428bca;margin-left:85px;"><font size=4px color=white>{{user.first_name}}</font></span>
+                                     </div>
+                                 </li>
+                                 <li class="list-primary" style="background-color: #d8d6c9;margin-bottom: 4px;border-radius: 10px;">
+                                     <div class="task-title" >
+                                         <span class="task-title-sp"><font size=3px><strong>Nom d'utilisateur </strong></font></span>
+                                         <span class="badge bg-important" style="background: #428bca;margin-left:16px;" ><font size=4px color=white>{{user.username}}</font></span>
+                                     </div>
+                                 </li>
+                                   <li class="list-primary" style="background-color: #d8d6c9;margin-bottom: 4px;border-radius: 10px;">
+                                       <div class="task-title" >
+                                           <span class="task-title-sp"><font size=3px><strong>Email </strong></font></span>
+                                           <span class="badge bg-important" style="background: #428bca;margin-left:103px;"><font size=4px color=white>{{user.email}}</font></span>
+                                       </div>
+                                   </li>
+                               </ul>
+                           </div>   
+                           
+                           <!-- Modal -->
+         <form method="POST" action="profile/{{user.id}}">
+             {% csrf_token %}           
+           <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal fade">
+                 <div class="modal-dialog" >
+                   <div class="modal-content">
+                       <div class="modal-header">
+                        <h4 class="modal-title"><strong>Modifier vos cordonnées ici</strong></h4>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                       </div>
+                       <div class="modal-body">
+                            Nom
+                           <input type="text" name="nom" value='{{user.last_name}}' autocomplete="off" class="form-control placeholder-no-fix" required>
+                           </div>
+                           <div class="modal-body">
+                            Prénom
+                             <input type="text" name="prenom" value='{{user.first_name}}' autocomplete="off" class="form-control placeholder-no-fix" required>
+                           </div>
+                           <div class="modal-body">
+                            Nom d'utilisateur
+                             <input type="text" name="username" value='{{user.username}}' autocomplete="off" class="form-control placeholder-no-fix" required>     
+                           </div>
+                           <div class="modal-body">
+                            Email
+                             <input type="text" name="email" value='{{user.email}}' autocomplete="off" class="form-control placeholder-no-fix" required>
+                          </div>
+                          <div class="modal-body">
+                            Mot de passe
+                             <input type="password" value='{{user.mdp}}' name="password1" placeholder="Mot de passe" id="myInput" autocomplete="off" class="form-control placeholder-no-fix" required>
+                             <label><input type="checkbox" onclick="myFunction()"> <font color=black>Afficher le mot de passe</font></label>
+                            </div>
+                       <div class="modal-footer">
+                           <button data-dismiss="modal" class="btn btn-theme" type="button">Cancel</button>
+                           <input type=submit class="btn btn-theme" >
+                       </div>
+                   </div>
+               </div>
+               </div>
+         </form>
+         {% endif %}                       
+                      </div>                 
+                   </section>
+                   </div>
+                   </div>
+               </div>
+        </div>
+  </div>
+    </div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Se déconnecter?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-primary" href="logout">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'candidat/assets/vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'candidat/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'candidat/assets/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'candidat/assets/js/sb-admin-2.min.js'%}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'candidat/assets/vendor/chart.js/Chart.min.js'%}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'candidat/assets/js/demo/chart-area-demo.js'%}"></script>
+  <script src="{% static 'candidat/assets/js/demo/chart-pie-demo.js'%}"></script>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
+    
+
+</body>
+
+</html>

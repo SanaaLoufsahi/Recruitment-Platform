@@ -1,0 +1,528 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>UH2C-RECRUTEMENT</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href= "{% static 'accueil/assets/img/logo.jpg' %}" rel="icon ">
+  
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700' %}" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'accueil/assets/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <script src="{% static 'https://kit.fontawesome.com/da5764cb57.js' %}" crossorigin="anonymous"></script>
+  <link href="{% static 'accueil/assets/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accueil/assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accueil/assets/lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accueil/assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'accueil/assets/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'accueil/assets/css/design1.css' %}" rel="stylesheet">
+
+  <!--=============================
+  w3.css===============================-->
+    <link rel="stylesheet" href=" https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- =======================================================
+    Theme Name: NewBiz
+    Theme URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo float-left" >
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+        <a href="#intro" class="scrollto"><img src="{% static 'accueil/assets/img/logo2.jpg' %}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="main-nav float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="#intro">Accueil</a></li>
+          <li><a href="#about">À Propos</a></li>
+          <li><a href="#why-us">Comment ça marche </a></li>
+          <li><a href="#contact">Contacter nous </a></li>
+
+        </ul>
+      </nav><!-- .main-nav -->
+      
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro" class="clearfix">
+    |<div class="container">
+      {% for message in messages %}
+      <h3><font color=#a9d86e>{{message}}</font></h3>
+     {% endfor %}
+      <div class="intro-img">
+        <img src="{% static 'accueil/assets/img/intro-img.svg'%}" alt="" class="img-fluid">
+      </div>
+
+      <div class="intro-info">
+        <h2>Devenir<br><span>un enseignant</span> à l'université<br>HASSAN II Casablanca</h2>
+        <div>
+           <button onclick="document.getElementById('download').style.display='block'"  class="btn-get-started scrollto">Inscription</button>
+            <button onclick="document.getElementById('download1').style.display='block'" class="btn-get-started scrollto">Identification</button>
+            
+        <div id="download" class="w3-modal w3-animate-opacity">
+          <div class="w3-modal-content" style="padding:0px;">
+            
+              <i onclick="document.getElementById('download').style.display='none'" class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
+              <form action=inscription method="POST" onsubmit="return test();"  class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+               
+                {% csrf_token %}
+
+                <h2 class="w3-center w3-text-blue">Inscription</h2>
+
+                  <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                      <div class="w3-rest">
+                        <span id ="span-lname"></span>
+                        <input id="lname" class="w3-input w3-border" name="last" type="text" placeholder="Nom" required>
+                      </div>
+                    </div>
+
+                    <div class="w3-row w3-section">
+                      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                          <div class="w3-rest">
+                            <span id ="span-fname"></span>
+                            <input id="fname" class="w3-input w3-border" name="first" type="text" placeholder="Prenom" required>
+                          </div>
+                      </div>
+
+                      <div class="w3-row w3-section">
+                        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                            <div class="w3-rest">
+                              <span id ="span-fname"></span>
+                              <input id="fname" class="w3-input w3-border" name="username" type="text" placeholder="Username" required>
+                            </div>
+                        </div>
+
+                  <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+                      <div class="w3-rest">
+                        <span id ="span-email"></span>
+                        <input id="semail" class="w3-input w3-border" name="email" type="email" placeholder="Email" required>
+                      </div>
+                  </div>
+
+                  <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="fa fa-lock" style="font-size:36px"></i></div>
+                      <div class="w3-rest">
+                        <span id ="span-password"></span>
+                        <input id="password" class="w3-input w3-border" name="mot_de_passe" type="password" placeholder="Mot de passe" required>
+                      </div>
+                  </div>
+
+                  <button type="submit" class="w3-button w3-block w3-padding-large w3-blue w3-margin-bottom"  >S'inscrire</button>
+              </form>
+              
+          </div>
+        </div>
+            <div id="download1" class="w3-modal w3-animate-opacity">
+          <div class="w3-modal-content">
+            
+              <i onclick="document.getElementById('download1').style.display='none'" class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
+              <form  method="POST" action="login" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+                {% csrf_token %}
+                  <h2 class="w3-center w3-text-blue">S'identifier</h2>
+
+                  <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                        <div class="w3-rest">
+                          <span id ="span-email"></span>
+                          <input id="fname" class="w3-input w3-border" name="identifiant" type="text" placeholder="Nom d'utilisateur" required>
+          
+                        </div>
+                  </div>
+
+                  <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="fa fa-lock" style="font-size:36px"></i></div>
+                      <div class="w3-rest">
+                        <span id ="span-lname"></span>
+                        <input id="lname" class="w3-input w3-border" name="password" type="password" placeholder="password" required>
+                      </div>
+                    </div>
+                    <button type="submit" class="w3-button w3-block w3-padding-large w3-blue w3-margin-bottom"  >S'identifier</button>
+                  </form>
+                    <div class="w3-row w3-section">
+                      <center><button class="btn btn-secondary scrollto" onclick="document.getElementById('forgetmodal').style.display='block'">Nom d'utilisateur ou mot de passe oublié ?</button></center>
+                      <br>
+                    </div>
+                  
+                    <!-- forget modal   -->
+                   
+                      <div id="forgetmodal" class="w3-modal w3-animate-opacity">
+                        <div style="padding:0px;width: 500px;margin-left: 30%;">
+                          <center>
+                           <form method="POST" action="forget" class="w3-card-4 w3-light-grey w3-text-blue w3-margin" style="padding-bottom: 5px;width: auto;">
+                            {% csrf_token %}
+                            <i onclick="document.getElementById('forgetmodal').style.display='none'" class="fa fa-remove w3-button w3-transparent w3-right w3-xlarge" style="padding-top: 4px;padding-bottom: 0px;" ></i>
+                          <div class="w3-row w3-section">
+                            <h4 class="w3-center w3-text-blue"><strong>Entrez votre email !</strong></h4>
+                          </div>
+                          <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+                            <div class="w3-rest">
+                            <span id ="span-email"></span>
+                            <input class="w3-input w3-border" type="email" name="email" placeholder="Votre Email" required> 
+                          </div>
+                          </div>
+                          <div class="w3-row w3-section">
+                            <input class="btn btn-primary" type="submit" value="Confirmer">
+                          </div>
+                        </form>  
+                        </center>
+                  </div>
+                  </div>   
+                             
+                  <!-- end forget modal   -->
+            
+          </div>
+        </div>
+
+    <script>
+          function test(){
+            if(document.getElementById('fname').value == ""){
+              document.getElementById('span-fname').innerHTML = "veuillez essayer de remplir votre nom";
+              return false;
+            }else{ 
+              if(document.getElementById('fname').value.length > 25){
+               document.getElementById('span-fname').innerHTML = "le nom est trop long";
+               return false;
+            }
+            }
+            
+
+            if(document.getElementById('lname').value == ""){
+              document.getElementById('span-lname').innerHTML = "veuillez essayer de remplir votre prenom";
+              return false;
+            }else{ 
+              if(document.getElementById('lname').value.length > 25){
+               document.getElementById('span-fname').innerHTML = "le prenom est trop long";
+               return false;
+            }
+            }
+
+            if(document.getElementById('semail').value == ""){
+              document.getElementById('span-email').innerHTML = "veuillez essayer de remplir votre email";
+              return false;
+            }
+
+            if(document.getElementById('password').value == ""){
+              document.getElementById('span-email').innerHTML = "veuillez essayer de remplir votre mot de passe";
+              return false;
+            }else{
+              if(document.getElementById('password').value.length < 8){
+               document.getElementById('span-password').innerHTML = "votre mot de passe doit contenir au moins 8 caractères <br> votre mot de passe doit contenir au moins 1 chiffre <br> Doit contenir au moins une lettre majuscule et minuscule";
+               return false;
+            }
+            }
+            var x = document.getElementById('password').value.length;
+            var str = document.getElementById('password').value;
+            var lowerCaseLetters = /[a-z]/g;
+            var upperCaseLetters = /[A-Z]/g;
+            var numbers = /[0-9]/g;
+            if(str.match(lowerCaseLetters)){
+              var cp =0;
+              cp = cp+1;
+            }else{
+              document.getElementById('span-password').innerHTML = "votre mot de passe doit contenir au moins 8 caractères <br> votre mot de passe doit contenir au moins 1 chiffre <br> Doit contenir au moins une lettre majuscule et minuscule";
+              return false;
+            }
+            if(str.match(upperCaseLetters)){
+              cp = cp+1;
+            }else{
+              document.getElementById('span-password').innerHTML = "votre mot de passe doit contenir au moins 8 caractères <br> votre mot de passe doit contenir au moins 1 chiffre <br> Doit contenir au moins une lettre majuscule et minuscule";
+              return false;
+            }
+            if(str.match(numbers)){
+              cp = cp+1;
+            }else{
+              document.getElementById('span-password').innerHTML = "votre mot de passe doit contenir au moins 8 caractères <br> votre mot de passe doit contenir au moins 1 chiffre <br> Doit contenir au moins une lettre majuscule et minuscule";
+              return false;
+            }
+
+            if(document.getElementById('Rpassword').value != str){
+              document.getElementById('span-Rpassword').innerHTML = "Votre mot de passe est incorrect";
+              return false;
+            }
+          }  
+  </script>
+          </div>
+      </div></div>
+  </section><!-- #intro -->
+
+  <main id="main"> 
+      
+    
+      
+      <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+        <header class="section-header">
+          <h3>À Propos</h3>
+          
+        </header>
+
+        <div class="row about-container">
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <p>
+              </p>
+              <BR><BR></BR></BR>
+            <div class="icon-box wow fadeInUp">
+              <h4 class="title">
+                <a href="#about">UH2C-Recrutement</a></h4>
+              <p class="description">Une plateforme de publication d'offres d'emplois dédiée aux doctorants qui veulent devenir des enseigants au sein de l'univérsité HASSAN II de Casablanca.<BR>
+                                     Est créée, et a pour role la publication d'offres d'emplois, et la possibilité pour les candidats de postuler en ligne.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+            <img src="{% static 'accueil/assets/img/about-extra-2.svg'%}" class="img-fluid" alt="">
+          </div>
+        </div>
+
+       
+
+      </div>
+    </section><!-- #about -->
+
+    <!--==========================
+      Services Section
+    ============================-->
+   <section id="why-us" class="wow fadeIn">
+      <div class="container">
+        <header class="section-header" style="margin-bottom: 90px;">
+          <h3>Comment ça marche?</h3>
+          
+        </header>
+
+        <div class="row row-eq-height justify-content-center" style="margin-bottom: 20px;">
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+              <i class="fas fa-user-plus"></i>
+              <div class="card-body">
+                <h5 class="card-title">Je crée un nouveau compte</h5>
+                <p class="card-text">J'entre toutes les informations me concernant pour améliorer ma visibilité.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+              <i class="far fa-address-card"></i>
+                <div class="card-body">
+                <h5 class="card-title">Je joins mon CV</h5><br>
+                <p class="card-text">Je joins mon CV à mon profil et je remplis tous les champs du CV.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+              <i class="fas fa-briefcase"></i> 
+                <div class="card-body">
+                <h5 class="card-title">Je choisis l'offre qui me correspond</h5>
+                <p class="card-text">Je postule et j'envoie ma candidature </p>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+      </div>
+    </section>
+      
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact">
+      <div class="container-fluid">
+
+        <div class="section-header">
+          <h3>Contacter Nous</h3>
+        </div>
+
+        <div class="row wow fadeInUp">
+
+          <div class="col-lg-6">
+            <div class="map mb-4 mb-lg-0">
+              <div style="overflow:hidden;width: 700px;position: relative;">
+                  <iframe width="600" height="400" src="https://maps.google.com/maps?hl=en&amp;q=université hassan 2 casablanca MOROCCO+()&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                  </iframe> 
+                   <div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;">
+                       <small style="line-height: 1.8;font-size: 0px;background: #fff;"> <a href="{% static 'https://nogomi.cc/' %}">Nogomi</a>
+                       </small>
+                  </div>
+                  <style>#gmap_canvas img{max-width:none!important;background:none!important}
+                  </style> 
+                </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-md-5 info">
+                <i class="ion-ios-location-outline"></i>
+                <p> Casablanca Maroc 20000</p>
+              </div>
+              <div class="col-md-4 info" style="padding-left: 0px;"> 
+                <i class="ion-ios-email-outline"></i>
+                <p>uh2c.contact@gmail.com</p>
+              </div>
+              <div class="col-md-3 info">
+                  
+                <i class="ion-ios-telephone-outline"></i>
+                <p>06.14.00.04.00</p>
+              </div>
+            </div>
+
+            <div class="form">
+              <form action=contact method="POST"  class="contactForm">
+                {% csrf_token %}
+                <div class="form-row">
+                  <div class="form-group col-lg-6">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <div class="validation"></div>
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                  <div class="validation"></div>
+                </div>
+                <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+      
+
+
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-info">
+              <h3><center>UH2C Recrutement</center></h3>
+              <p><center>Une plateforme de publication d'offres d'emplois dédiée aux doctorants qui veulent devenir des enseigants au sein de l'univérsité HASSAN II</center></p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+              <h4><center>Useful Links</center></h4>
+            <ul><center>
+              <li><a href="#intro">Accueil</a></li>
+              <li><a href="#about">A Propos</a></li>
+              <li><a href="#why-us">Comment ça marche</a></li>
+              <li><a href="#contact">Contacter Nous</a></li>
+                </center>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+              <h4><center>Contacter Nous</center></h4>
+            <p>
+              <strong>Adresse</strong> Casablanca Maroc 20000<br>
+              <strong>Phone</strong>  06 14.00.04.00<br>
+              <strong>Email</strong>  uh2c.contact@gmail.com<br>
+            </p>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+              <h4><center>Notre plateforme</center></h4>
+              <p>Est créée, et a pour role la publication d'offres d'emplois, et la possibilité pour les candidats de postuler en ligne.</p>
+           
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>UH2C Recrutement</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+        -->
+        Designed by <a href="{% static 'https://bootstrapmade.com/' %}">UH2C</a>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below if you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'accueil/assets/lib/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/jquery/jquery-migrate.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/easing/easing.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/mobile-nav/mobile-nav.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/wow/wow.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/waypoints/waypoints.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/counterup/counterup.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/isotope/isotope.pkgd.min.js'%}"></script>
+  <script src="{% static 'accueil/assets/lib/lightbox/js/lightbox.min.js'%}"></script>
+  <!-- Contact Form JavaScript File -->
+  <!--<script src="{% static 'user/assets/contactform/contactform.js'%}"></script>-->
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'accueil/assets/js/main.js'%}"></script>
+
+</body>
+</html>
